@@ -21,4 +21,10 @@ public class JDBC {
 
         return connection;
     }
+
+    public static String createQueryForFirstRequirement() {
+        return "select EMP.first_name as fName, EMP.last_name as lName\n" +
+                "from EMPLOYEES EMP left join DEPARTMENTS DEP on EMP.department_id=DEP.department_id\n" +
+                "where DEP.department_name = ? order by first_name, last_name";
+    }
 }

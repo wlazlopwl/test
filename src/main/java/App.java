@@ -25,9 +25,14 @@ public class App {
             switch (selectedOption) {
                 case "1":
 
+                    String typedDepartment = "";
+                    System.out.println("The first requirement was selected ");
+                    System.out.println("Enter name of department ");
+                    typedDepartment = reader.readLine();
+                    EmployeesInformation employeesInformation = new EmployeesInformation(new JDBC());
+                    employeesInformation.getEmployeesByDepartment(typedDepartment);
                     System.exit(0);
                     break;
-
 
                 case "2":
 
@@ -52,7 +57,6 @@ public class App {
             }
         }
         while (selectedOption != "4");
-
     }
 }
                          
