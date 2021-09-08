@@ -19,9 +19,16 @@ public class EmployeesInformation {
             prst.setString(1, departmentName);
             ResultSet rs = prst.executeQuery();
 
+            int resultSize = 0;
             while (rs.next()) {
+                resultSize++;
                 System.out.println(rs.getString("fName") + " " + rs.getString("lName"));
             }
+
+            if (resultSize == 0) System.out.println("No result. Check the parameters.");
+            else if (resultSize < 100)
+                System.out.println("The number of results is low. Check the parameters.");
+
 
             rs.close();
 
