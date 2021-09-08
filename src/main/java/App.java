@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * @author Pawel Wlazlo
@@ -36,8 +37,27 @@ public class App {
 
                 case "2":
 
+                    String percentageValue = "";
+                    String numberLastnames = "";
+                    System.out.println("The second requirement was selected ");
+                    System.out.println("Enter percentage: ");
+                    percentageValue = reader.readLine();
+                    System.out.println("Enter the number of lastnames:  ");
+                    numberLastnames = reader.readLine();
+
+                    ArrayList<String> lastNamesList = new ArrayList<>();
+                    int number = Integer.parseInt(numberLastnames);
+                    for (int i = 1; i <= number; i++) {
+                        System.out.println("Lastname number: " + i);
+                        lastNamesList.add(reader.readLine());
+                    }
+
+                    DepartmentsInformation departmentsInformation = new DepartmentsInformation(new JDBC());
+                    departmentsInformation.getDepartmentNameByParameter(lastNamesList, Integer.parseInt(percentageValue));
+
                     System.exit(0);
                     break;
+
 
 
                 case "3":
