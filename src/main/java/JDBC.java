@@ -31,6 +31,21 @@ public class JDBC {
         return queryBuilder.toString();
 
     }
+    public static String createQueryForThirdRequirement(int lastNameListSize) {
+        String query = "select distinct DEPARTMENT_NAME from (" +
+                " select EMP.FIRST_NAME as FIRST_NAME, EMP.LAST_NAME as LAST_NAME, EMP.SALARY as SALARY, EMP.DEPARTMENT_ID as DEPARTMENT_ID,\n" +
+                "  JOB_H.START_DATE as START_DATE, JOBS.MAX_SALARY as MAX_SALARY,DEP.DEPARTMENT_NAME as DEPARTMENT_NAME,\n" +
+                "  row_number() over (partition by EMP.EMPLOYEE_ID order by JOB_H.START_DATE DESC) as row_number\n" +
+                "  FROM EMPLOYEES EMP \n" +
+                "  left join JOB_HISTORY JOB_H on EMP.JOB_ID=JOB_H.JOB_ID\n" +
+                "  left join JOBS on EMP.JOB_ID = JOBS.JOB_ID\n" +
+                "  left join DEPARTMENTS DEP on EMP.DEPARTMENT_ID=DEP.DEPARTMENT_ID) where (row_number = 1 and LAST_NAME in (";
+
+        StringBuilder queryBuilder = setSizeParametersFromList(lastNameListSize, query);
+        queryBuilder.append(") and DEPARTMENT_NAME = ? and SALARY< MAX_SALARY * ?) order by DEPARTMENT_NAME");
+
+        return queryBuilder.toString();
+    }
 
     private static StringBuilder setSizeParametersFromList(int lastNameListSize, String query) {
         StringBuilder queryBuilder = new StringBuilder(query);

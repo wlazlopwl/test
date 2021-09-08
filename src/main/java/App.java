@@ -59,11 +59,33 @@ public class App {
                     break;
 
 
-
                 case "3":
+
+                    String departmentName = "";
+                    String percentageValue1 = "";
+                    String numberLastnames1 = "";
+
+                    System.out.println("The third requirement was selected ");
+                    System.out.println("Enter department name: ");
+                    departmentName = reader.readLine();
+                    System.out.println("Enter percentage: ");
+                    percentageValue1 = reader.readLine();
+                    System.out.println("Enter the number of lastnames:  ");
+                    numberLastnames1 = reader.readLine();
+
+                    ArrayList<String> lastNamesList1 = new ArrayList<>();
+                    int number2 = Integer.parseInt(numberLastnames1);
+                    for (int i = 1; i <= number2; i++) {
+                        System.out.println("Lastname number: " + i);
+                        lastNamesList1.add(reader.readLine());
+                    }
+
+                    DepartmentsAndEmployeeInformation departmentsAndEmployeeInformation = new DepartmentsAndEmployeeInformation(new JDBC());
+                    departmentsAndEmployeeInformation.getDepartmentAndEmployee(lastNamesList1, Integer.parseInt(percentageValue1), departmentName);
 
                     System.exit(0);
                     break;
+
 
                 case "4":
 
