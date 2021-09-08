@@ -5,11 +5,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
+ * The main class with menu for selecting an action
+ *
+ *The class requires the implementation of methods that validate the entered data.
  * @author Pawel Wlazlo
  */
 public class App {
 
-    public static void main(String[] args) throws IOException, SQLException {
+    public static void main(String[] args) throws IOException {
 
         String selectedOption = "";
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));

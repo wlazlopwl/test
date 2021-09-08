@@ -4,6 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * the class is responsible for displaying the names of departments the names of the departments
+ * where the employee with the given name worked and his earnings in the last position held are
+ * lower by more than the percentage specified in the parameter, compared to the maximum earnings for this position.
+ */
 public class DepartmentsInformation {
 
     private final JDBC jdbc;
@@ -12,7 +17,13 @@ public class DepartmentsInformation {
         this.jdbc = jdbc;
     }
 
-
+    /**
+     * The method executes SQL queries with the given parameter.
+     * Displays the name of departments
+     *
+     * @param lastnames List of employee lastnames provided in the console
+     * @param percentageValue the percentage given to the console by the user
+     */
     public void getDepartmentNameByParameter(ArrayList<String> lastnames, int percentageValue) {
         try {
 

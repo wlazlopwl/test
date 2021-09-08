@@ -4,6 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ The class combines the requirements from the DepartmentsInformation and EmployeesInformation classes.
+ */
 public class DepartmentsAndEmployeeInformation {
 
     private final JDBC jdbc;
@@ -12,6 +15,11 @@ public class DepartmentsAndEmployeeInformation {
         this.jdbc = jdbc;
     }
 
+    /**
+     @param departmentName  is the department name entered by the user in the console
+     @param lastnames list of lastnames entered by the user in the console
+     @param  percentage the percentage entered by the user in the console used to calculate the earnings for a given position in relation to the maximum earnings
+     */
     public void getDepartmentAndEmployee(ArrayList<String> lastnames, int percentage, String departmentName) {
         try {
 

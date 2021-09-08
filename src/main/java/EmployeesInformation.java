@@ -4,6 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
+/**
+ * the class is responsible for displaying the names of employees who have worked at least once in a given department
+ */
 public class EmployeesInformation {
 
     private final JDBC jdbc;
@@ -12,6 +15,12 @@ public class EmployeesInformation {
         this.jdbc = jdbc;
     }
 
+    /**
+     * The method executes SQL queries with the given parameter.
+     * Displays the first and last name of the employee
+     *
+     * @param departmentName size of the list with lastnames
+     */
     public void getEmployeesByDepartment(String departmentName) {
         try {
             Connection connection = jdbc.connect();

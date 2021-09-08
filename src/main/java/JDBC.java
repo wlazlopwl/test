@@ -2,6 +2,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * The class provides a connection to the database and functions that return SQL queries
+ */
 public class JDBC {
 
     private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
@@ -9,12 +12,23 @@ public class JDBC {
     private static final String USER = "hr";
     private static final String PASSWORD = "hr";
 
+    /**
+     * The method provides SQL query for first requirement
+     *
+     * @return returns String with SQL query for first requirement
+     */
     public static String createQueryForFirstRequirement() {
         return "select EMP.first_name as fName, EMP.last_name as lName\n" +
                 "from EMPLOYEES EMP left join DEPARTMENTS DEP on EMP.department_id=DEP.department_id\n" +
                 "where DEP.department_name = ? order by first_name, last_name";
     }
 
+    /**
+     * The method provides SQL query for second requirement
+     *
+     * @param lastNameListSize size of the list with lastnames
+     * @return returns String with SQL query for second requirement
+     */
     public static String createQueryForSecondRequirement(int lastNameListSize) {
         String query = "select distinct DEPARTMENT_NAME from (" +
                 "  EMP.LAST_NAME as LAST_NAME, EMP.SALARY as SALARY, EMP.DEPARTMENT_ID as DEPARTMENT_ID,\n" +
@@ -31,6 +45,13 @@ public class JDBC {
         return queryBuilder.toString();
 
     }
+
+    /**
+     * The method provides SQL query for third requirement
+     *
+     * @param lastNameListSize size of the list with lastnames
+     * @return returns String with SQL query for third requirement
+     */
     public static String createQueryForThirdRequirement(int lastNameListSize) {
         String query = "select distinct DEPARTMENT_NAME from (" +
                 " select EMP.FIRST_NAME as FIRST_NAME, EMP.LAST_NAME as LAST_NAME, EMP.SALARY as SALARY, EMP.DEPARTMENT_ID as DEPARTMENT_ID,\n" +
@@ -47,6 +68,14 @@ public class JDBC {
         return queryBuilder.toString();
     }
 
+
+    /**
+     * The method sets the number of parameters in SQL query
+     *
+     * @param lastNameListSize size of the list with lastnames
+     * @param query            SQL query
+     * @return returns StringBuilder with part SQL query for selected requirement
+     */
     private static StringBuilder setSizeParametersFromList(int lastNameListSize, String query) {
         StringBuilder queryBuilder = new StringBuilder(query);
 
@@ -59,6 +88,11 @@ public class JDBC {
         return queryBuilder;
     }
 
+    /**
+     * The method connect to the database
+     *
+     * @return returns an object of the Connection
+     */
     public Connection connect() throws SQLException {
         Connection connection = null;
         try {
